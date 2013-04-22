@@ -1,7 +1,7 @@
 <?php
 
-// JIRA系统域名
+// Base URL to JIRA
 $jiraUrl    = 'http://jira.company.com';
 
-// 登陆JIRA后，将Cookie中的‘seraph.rememberme.cookie’值，替换下面的xxx
+// Log in to JIRA and copy the value of the cookie ‘seraph.rememberme.cookie’
 $jiraCookie = 'seraph.rememberme.cookie=xxx';
