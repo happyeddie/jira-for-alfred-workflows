@@ -17,7 +17,7 @@ $content        = $w->request($url, array(
 ));
 
 if (!strpos($content, 'channel')) {
-    $w->result('zhoufan.jira.error', '', '帐户验证失败', '请先运行JIRA参数设置', 'icon.png');
+    $w->result('zhoufan.jira.error', '', 'Account verification failed', 'First run JIRA setup', 'icon.png');
     echo $w->toxml();
     exit;
 }
@@ -25,7 +25,7 @@ if (!strpos($content, 'channel')) {
 preg_match_all("/<item>([\S\s]+?)<\/item>/", $content, $itemLines);
 
 if (!count($itemLines[1])) {
-    $w->result('zhoufan.jira.no_result', '', '没有查询到相关记录', '', 'icon.png');
+    $w->result('zhoufan.jira.no_result', '', 'No result', '', 'icon.png');
     echo $w->toxml();
     exit;
 }
@@ -52,7 +52,7 @@ foreach ((array) $itemLines[1] as $itemLine) {
     $title      = $itemInfo['title']['value'];
     $reporter   = substr($itemInfo['reporter']['value'], strlen($itemInfo['reporter']['username']) + 1);
     $assignee   = substr($itemInfo['assignee']['value'], strlen($itemInfo['assignee']['username']) + 1);
-    $desc       = "类型:{$itemInfo['type']['value']} 优先级:{$itemInfo['priority']['value']} 状态:{$itemInfo['status']['value']} 报告:{$reporter} 经办:{$assignee}";
+    $desc       = "Type: {$itemInfo['type']['value']}, Priority: {$itemInfo['priority']['value'], Status: {$itemInfo['status']['value']}, Reporter: {$reporter}, Assignee:{$assignee}";
     $w->result($key, $url, $title, $desc, 'icon.png');
 }
 
